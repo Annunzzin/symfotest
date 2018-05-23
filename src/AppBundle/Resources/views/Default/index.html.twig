@@ -1,0 +1,13 @@
+{% extends 'AppBundle::base.html.twig' %}
+{% block title %} Accueil {% endblock %}
+
+{% block body %}
+
+    hello {{ dump(method) }}
+    param {{ dump(test) }}
+
+    {{ render(controller('AppBundle\\Controller\\DefaultController:menu')) }}
+
+
+{% endblock %}
+{% block javascripts %}{% endblock %}

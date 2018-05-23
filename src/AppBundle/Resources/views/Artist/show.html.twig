@@ -1,0 +1,29 @@
+{% extends 'AppBundle::base.html.twig' %}
+{% import 'AppBundle::Macros/macros.html.twig' as macros %}
+
+{% block title %} {{ artist.name }} {% endblock %}
+
+{% block body %}
+
+    <h1>Artiste {{ artist.name }}</h1>
+
+    <ul>
+        <li>{{ artist.id }}</li>
+        <li>{{ artist.type }}</li>
+        <li>{{ artist.picture }}</li>
+        <li>{{ artist.genre }}</li>
+        <li>
+            {{ macros.link_button_args('app_artists_edit',{'id':artist.id},'Éditer mon artiste') }}
+        </li>
+
+    </ul>
+
+
+    <a href="{{ path('app_artists') }}"> Retour aux artistes</a>
+
+
+
+
+
+{% endblock %}
+{% block javascripts %}{% endblock %}

@@ -1,0 +1,7 @@
+{% macro link_button(route,text) %}
+    <a href="{{ path(route) }}"> {{ text }}</a>
+{% endmacro %}
+
+{% macro link_button_args(route,args,text) %}
+    <a href="{{ path(route,args) }}"> {{ text }}</a>
+{% endmacro %}

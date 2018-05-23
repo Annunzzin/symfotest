@@ -1,0 +1,106 @@
+app_login:
+    path: /login
+    defaults:
+        _controller: 'AppBundle:Security:login'
+
+app_logout:
+    path: /logout
+
+app_homepage:
+    path:     /
+    defaults: { _controller: AppBundle:Default:index }
+
+app_param:
+    path: /param/{name}
+    defaults:
+        _controller: 'AppBundle:Default:param'
+        name : 'jambon'
+    methods: [GET]
+
+
+app_exception:
+    path: /404
+    defaults: { _controller: AppBundle:Default:notFound }
+
+
+#Tracks_routing
+app_tracks:
+    path: /tracks
+    defaults: { _controller: AppBundle:Track:index }
+
+app_tracks_new:
+    path: /tracks/new
+    defaults: { _controller: AppBundle:Track:create }
+
+app_tracks_edit:
+    path: /tracks/{id}/edit
+    defaults:
+        _controller: 'AppBundle:Track:update'
+
+app_tracks_session:
+    path: /tracks/session/{id}
+    defaults:
+      _controller: 'AppBundle:Track:saveId'
+
+app_tracks_json:
+    path: /tracks/{id}.json
+    defaults:
+        _controller: 'AppBundle:Track:showJson'
+
+app_tracks_param:
+    path: /tracks/{id}
+    defaults:
+        _controller: 'AppBundle:Track:show'
+
+# Playlists_routing
+app_playlists:
+    path: /playlists
+    defaults: { _controller: AppBundle:Playlist:index }
+
+app_playlists_new:
+    path: /playlists/new
+    defaults: { _controller: AppBundle:Playlist:create }
+
+app_playlists_edit:
+    path: /playlists/{id}/edit
+    defaults:
+            _controller: 'AppBundle:Playlist:update'
+
+app_playlists_param:
+    path: /playlists/{id}
+    defaults:
+        _controller: 'AppBundle:Playlist:show'
+
+
+
+#Artists_routing
+app_artists:
+    path: /artists
+    defaults: { _controller: AppBundle:Artist:index }
+
+app_artists_new:
+    path: /artists/new
+    defaults: { _controller: AppBundle:Artist:create }
+
+app_artists_edit:
+    path: /artists/{id}/edit
+    defaults:
+        _controller: 'AppBundle:Artist:update'
+
+
+app_artists_json:
+    path: /artists/{id}.json
+    defaults:
+        _controller: 'AppBundle:Artist:showJson'
+
+app_artists_param:
+    path: /artists/{id}
+    defaults:
+        _controller: 'AppBundle:Artist:show'
+
+
+app_mails:
+    path: /mails
+    defaults:
+        _controller: 'AppBundle:Default:mail'
+

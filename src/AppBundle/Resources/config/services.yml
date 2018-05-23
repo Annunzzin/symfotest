@@ -1,0 +1,58 @@
+services:
+
+    AppBundle\Repository\TrackRepository:
+        factory: 'Doctrine\ORM\EntityManagerInterface:getRepository'
+        arguments:
+            - AppBundle\Entity\Track
+
+
+    AppBundle\Repository\ArtistRepository:
+        factory: 'Doctrine\ORM\EntityManagerInterface:getRepository'
+        arguments:
+            - AppBundle\Entity\Artist
+
+
+    AppBundle\Repository\PlaylistRepository:
+        factory: 'Doctrine\ORM\EntityManagerInterface:getRepository'
+        arguments:
+            - AppBundle\Entity\Playlist
+
+    AppBundle\Playlist\DurationCalculator: ~
+
+    AppBundle\Form\ArtistType:
+        tags:
+            - {name: form.type }
+
+
+    AppBundle\Twig\AppExtension:
+        arguments:
+            - '@AppBundle\Repository\PlaylistRepository'
+
+
+
+
+        tags:
+            - {name: twig.extension }
+
+
+    AppBundle\Controller\DefaultController: ~
+
+
+    AppBundle\Notification\ArtistListener:
+        tags:
+            - {name: kernel.event_listener,
+              event: app.artist.created,
+              method: onArtistCreated}
+
+
+
+
+
+    #app.repository.artistrepository:
+     #       class: AppBundle\Repository\ArtistRepository
+
+
+
+#    app.example:
+#        class: AppBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

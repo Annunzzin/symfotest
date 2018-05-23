@@ -1,0 +1,28 @@
+{% extends 'AppBundle::base.html.twig' %}
+{% block title %}  Édition de track {% endblock %}
+
+{% block body %}
+
+    <h1>Formulaire d'édition de track</h1>
+
+
+
+
+    {{ form_start(form) }}
+
+
+        {{ form_errors(form) }}
+        {{ form_row(form.title) }}
+        {{ form_row(form.duration) }}
+        {{ form_row(form.artist) }}
+        {{ form_row(form.submit) }}
+
+    {{ form_end(form) }}
+    <a href="{{ path('app_tracks') }}"> Retour aux artistes</a>
+
+
+
+
+
+{% endblock %}
+{% block javascripts %}{% endblock %}

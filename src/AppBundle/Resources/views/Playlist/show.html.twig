@@ -1,0 +1,52 @@
+{% extends 'AppBundle::base.html.twig' %}
+{% block title %} {{ playlist.name }} {% endblock %}
+{% block body %}
+
+    <h1>Tracks de la playlist  {{ playlist.name }}</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Nom de chanson</th>
+            <th>Durée de la chanson </th>
+            <th>Id de la chanson</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for track in playlist.tracks %}
+
+            <tr>
+                <td>
+                    <a href="{{ path('app_tracks_param',{'id':track.id}) }}">
+                        <h2>{{ track.title }}</h2>
+                    </a>
+                </td>
+
+
+                <td> {{ track.duration }}</td>
+
+                <td> {{ track.id }}</td>
+
+
+            </tr>
+
+        {% endfor %}
+
+        <h2>Durée totale de la playlist : {{ calculate(playlist)|sec_to_min }} </h2>
+
+        </tbody>
+
+    </table>
+
+
+    <a href="{{ path('app_playlists') }}"> Retour aux playlists</a>
+
+
+
+
+
+
+{% endblock %}
+{% block javascripts %}{% endblock %}
+

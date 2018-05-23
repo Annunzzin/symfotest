@@ -1,0 +1,69 @@
+{% extends 'AppBundle::base.html.twig' %}
+{% import 'AppBundle::Macros/macros.html.twig' as macros %}
+
+{% block title %} Mes tracks {% endblock %}
+
+{% block body %}
+
+    {{ macros.link_button('app_tracks_new','Création de tracks') }}
+
+
+    <h1>Mes tracks</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nom de chanson</th>
+                <th>Redirection json</th>
+                <th>Longueur (minutes)</th>
+
+                <th>id de track</th>
+                <th>id d'artiste</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for track in tracks %}
+
+                <tr>
+                    <td>
+                        <a href="{{ path('app_tracks_param',{'id':track.id}) }}">
+                            <h2>{{ track.title }}</h2>
+                        </a>
+                    </td>
+
+                    <td>
+                        <a href="{{ path('app_tracks_json',{'id':track.id}) }}">
+                            <h2>{{ track.title }} en json</h2>
+                        </a>
+                    </td>
+                    <td> {{ track.duration }}</td>
+
+                    <td> {{ track.id }}</td>
+                    <td>
+                        <a href="{{ path('app_artists_param',{'id':track.artist.id}) }}">
+                            <h2>{{ track.artist.name }}</h2>
+                        </a>
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+
+
+
+
+
+    <a href="{{ path('app_homepage') }}">
+        <h2>Retour à l'accueil</h2>
+    </a>
+
+
+{% endblock %}
+{% block javascripts %}{% endblock %}
+

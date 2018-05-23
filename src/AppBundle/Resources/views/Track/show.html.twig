@@ -1,0 +1,39 @@
+{% extends 'AppBundle::base.html.twig' %}
+{% import 'AppBundle::Macros/macros.html.twig' as macros %}
+
+{% block title %} {{ track.title }} {% endblock %}
+{% block body %}
+
+    <h1>Track  {{ track.title }}</h1>
+
+    <ul>
+
+
+        <li>{{ track.id }}</li>
+        <li>{{ track.duration }}</li>
+
+        <li>
+            <a href="{{ path('app_artists_param',{'id':track.artist.id}) }}">
+                {{ track.artist.name }}
+            </a>
+        </li>
+
+
+        <li>
+            {{ macros.link_button_args('app_tracks_edit',{'id':track.id},'Éditer ma track') }}
+        </li>
+
+
+    </ul>
+
+
+    <a href="{{ path('app_tracks') }}"> Retour aux tracks</a>
+
+
+
+
+
+
+{% endblock %}
+{% block javascripts %}{% endblock %}
+

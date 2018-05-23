@@ -1,0 +1,29 @@
+{% extends 'AppBundle::base.html.twig' %}
+{% block title %}  Édition d'artiste {% endblock %}
+
+{% block body %}
+
+    <h1>Formulaire d'édition d'artiste</h1>
+
+
+
+
+    {{ form_start(form) }}
+
+
+        {{ form_errors(form) }}
+        {{ form_row(form.name) }}
+        {{ form_row(form.type) }}
+        {{ form_row(form.picture) }}
+        {{ form_row(form.genre) }}
+        {{ form_row(form.submit) }}
+
+    {{ form_end(form) }}
+    <a href="{{ path('app_artists') }}"> Retour aux artistes</a>
+
+
+
+
+
+{% endblock %}
+{% block javascripts %}{% endblock %}

@@ -1,0 +1,13 @@
+AppBundle\Entity\Artist:
+    properties:
+        name:
+            - NotBlank: ~
+        type:
+            - NotBlank: ~
+            - Choice:
+                choices: [band,solo]
+                message: "Please choose a valid type -band or solo-"
+
+
+        picture:
+            - Url: ~

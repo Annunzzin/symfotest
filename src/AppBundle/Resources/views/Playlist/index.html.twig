@@ -1,0 +1,58 @@
+{% extends 'AppBundle::base.html.twig' %}
+{% import 'AppBundle::Macros/macros.html.twig' as macros %}
+{% block title %} Mes playlists {% endblock %}
+{% block body %}
+
+    <h1>Les playlists</h1>
+
+
+
+    {{ macros.link_button('app_playlists_new','Création de playlist') }}
+
+
+    {{ render(controller('AppBundle\\Controller\\DefaultController:menu')) }}
+
+
+
+    <a href="{{ path('app_homepage') }}">
+        <h2>Retour à l'accueil</h2>
+    </a>
+
+
+
+    <table>
+        <thead>
+        <tr>
+            <th>Nom de playlist</th>
+            <th>Id de playlist</th>
+
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for playlist in playlists %}
+
+            <tr>
+                <td>
+                    <h2>{{ playlist.name }}</h2>
+                </td>
+
+                <td>
+                    <a href="{{ path('app_playlists_param',{'id':playlist.id}) }}">
+                        <h2>{{ playlist.id }} </h2>
+                    </a>
+                </td>
+
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+
+
+
+{% endblock %}
+{% block javascripts %}{% endblock %}
