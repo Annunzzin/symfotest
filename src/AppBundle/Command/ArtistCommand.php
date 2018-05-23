@@ -16,6 +16,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
+use Symfony\Component\Console\Style\SymfonyStyle;
 
 class ArtistCommand extends ContainerAwareCommand
 {
@@ -35,21 +36,28 @@ class ArtistCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
 
+        $io = new SymfonyStyle($input,$output);
+
+        $io->title('Affichage de votre artiste');
+
         $argument = $input->getArgument('id');
 
-        $helper = $this->getHelper('question');
+        //$helper = $this->getHelper('question');
 
         while($argument == ""){
-            $question = new Question('Please enter the id of the artist');
-            $argument = $helper->ask($input,$output,$question);
+/*            $question = new Question('Please enter the id of the artist');*/
+            $argument = $io->ask('Please enter the id of the artist');
+                //$helper->ask($input,$output,$question);
         }
 
         $artistRepository = $this->getContainer()->get('AppBundle\Repository\ArtistRepository');
 
         $artist = $artistRepository->find($argument);
 
-        $output->writeln('Votre artiste '.$artist->getName());
-        $output->writeln('--------------------------------');
+        $io->title('Votre artiste '.$artist->getName());
+
+
+
 
         $output->writeln('id :  '.$artist->getId());
         $output->writeln('type :  '.$artist->getType());

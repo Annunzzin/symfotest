@@ -21,24 +21,15 @@
         </li>
 
         {% for track in playlist.tracks %}
-
             <tr>
                 <td>
                     <a href="{{ path('app_tracks_param',{'id':track.id}) }}">
                         <h2>{{ track.title }}</h2>
                     </a>
                 </td>
-
-
                 <td> {{ track.duration }}</td>
-
                 <td> {{ track.id }}</td>
-
-
             </tr>
-
-
-
         {% endfor %}
 
         <h2>Durée totale de la playlist : {{ calculate(playlist)|sec_to_min }} </h2>

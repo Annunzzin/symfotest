@@ -72,7 +72,6 @@ class PlaylistController extends Controller
 
     public function updateAction(Request $request,$id){
 
-
         $playlistRepo = $this->get(PlaylistRepository::class);
         $playlist = $playlistRepo->find($id);
 
@@ -90,15 +89,6 @@ class PlaylistController extends Controller
 
 
         return $this->render('AppBundle:Playlist:edit.html.twig',array('form'=>$formView));
-
-
-
-
-
-
-
-
-
 
     }
 
