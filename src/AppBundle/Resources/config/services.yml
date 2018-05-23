@@ -19,18 +19,13 @@ services:
 
     AppBundle\Playlist\DurationCalculator: ~
 
-    AppBundle\Form\ArtistType:
-        tags:
-            - {name: form.type }
+
+
 
 
     AppBundle\Twig\AppExtension:
         arguments:
             - '@AppBundle\Repository\PlaylistRepository'
-
-
-
-
         tags:
             - {name: twig.extension }
 
