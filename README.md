@@ -6,3 +6,4 @@ Symfony test
 
 - Faire un git clone
 - Composer install
+

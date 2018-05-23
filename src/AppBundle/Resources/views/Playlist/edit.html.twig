@@ -1,0 +1,34 @@
+{% extends 'AppBundle::base.html.twig' %}
+{% block title %}  Édition de playlist {% endblock %}
+
+{% block body %}
+
+    <h1>Formulaire d'édition de playlist</h1>
+
+
+
+
+    {{ form_start(form) }}
+
+
+        {{ form_errors(form) }}
+        {{ form_row(form.name) }}
+        {#{% for trackField in form.tracks %}
+            <li>
+                {{ form_errors(trackField) }}
+                {{ form_widget(trackField) }}
+            </li>
+        {% endfor %}#}
+
+        {{ form_row(form.tracks) }}
+        {{ form_row(form.submit) }}
+
+    {{ form_end(form) }}
+    <a href="{{ path('app_playlists') }}"> Retour aux playlists</a>
+
+
+
+
+
+{% endblock %}
+{% block javascripts %}{% endblock %}

@@ -70,6 +70,38 @@ class PlaylistController extends Controller
     }
 
 
+    public function updateAction(Request $request,$id){
+
+
+        $playlistRepo = $this->get(PlaylistRepository::class);
+        $playlist = $playlistRepo->find($id);
+
+        $form = $this->createForm(PlaylistType::class,$playlist);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $em = $this->get('doctrine.orm.entity_manager');
+            $em->flush();
+
+            return $this->redirectToRoute('app_playlists_param',array('id'=>$id));
+        }
+        $formView = $form->createView();
+
+
+        return $this->render('AppBundle:Playlist:edit.html.twig',array('form'=>$formView));
+
+
+
+
+
+
+
+
+
+
+    }
+
 
 
 

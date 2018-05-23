@@ -1,4 +1,6 @@
 {% extends 'AppBundle::base.html.twig' %}
+{% import 'AppBundle::Macros/macros.html.twig' as macros %}
+
 {% block title %} {{ playlist.name }} {% endblock %}
 {% block body %}
 
@@ -14,6 +16,10 @@
         </thead>
 
         <tbody>
+        <li>
+            {{ macros.link_button_args('app_playlists_edit',{'id':playlist.id},'Éditer ma playlist') }}
+        </li>
+
         {% for track in playlist.tracks %}
 
             <tr>
@@ -30,6 +36,8 @@
 
 
             </tr>
+
+
 
         {% endfor %}
 
