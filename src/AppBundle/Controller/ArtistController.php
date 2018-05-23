@@ -56,7 +56,16 @@ class ArtistController extends Controller
 
         $artist = $key;
 
-        return $this->render('AppBundle:Artist:show.html.twig',array('artist'=>$artist));
+        if($artist instanceof Artist){
+            return $this->render('AppBundle:Artist:show.html.twig',array('artist'=>$artist));
+
+        }
+
+        $artists = $artistRepo->findAll();
+
+        return $this->render('AppBundle:Artist:index.html.twig',array('artists'=>$artists));
+
+
 
     }
 
@@ -72,7 +81,10 @@ class ArtistController extends Controller
 
 
         $id = $request->get('id');
+
         $key = $artistRepo->find($id);
+
+
 
         $artist = $key;
 
@@ -115,21 +127,31 @@ class ArtistController extends Controller
 
         $artist = $artistRepo->find($id);
 
-        $form = $this->createForm(ArtistType::class,$artist);
 
-        $form->handleRequest($request);
+        if($artist instanceof Artist){
+            $form = $this->createForm(ArtistType::class,$artist);
 
-        if($form->isSubmitted() && $form->isValid()){
-            $em = $this->get('doctrine.orm.entity_manager');
+            $form->handleRequest($request);
 
-            $em->flush();
+            if($form->isSubmitted() && $form->isValid()){
+                $em = $this->get('doctrine.orm.entity_manager');
 
-            return $this->redirectToRoute('app_artists_param',array('id'=>$id));
+                $em->flush();
+
+                return $this->redirectToRoute('app_artists_param',array('id'=>$id));
+            }
+            $formView = $form->createView();
+
+
+            return $this->render('AppBundle:Artist:edit.html.twig',array('form'=>$formView));
         }
-        $formView = $form->createView();
 
 
-        return $this->render('AppBundle:Artist:edit.html.twig',array('form'=>$formView));
+        $artists = $artistRepo->findAll();
+
+        return $this->render('AppBundle:Artist:index.html.twig',array('artists'=>$artists));
+
+
 
     }
 
